@@ -1,0 +1,21 @@
+// Begin Menus
+menu_main_multiplayer=Enter World
+menu_main_exit=Quit
+menu_main_back=Back
+menu_main_cancel=Cancel
+menu_main_options=Options
+menu_main_login=Login
+menu_main_logout=Logout
+
+menu_options_fullscreen=~! Broken !~
+
+menu_login_enterInfo=Please enter your username and password
+menu_login_submit=Login
+menu_login_create=Create Account
+
+menu_game_leave=Leave
+
+server_disconnect=Disconnected from server
+server_lost=Could not connect to the server
+server_deny=Denied connection to server
+server_connecting=Connecting to server, please wait...
