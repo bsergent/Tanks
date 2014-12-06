@@ -20,7 +20,7 @@ public class ResourcePool {
     public static Texture getTexture(String imageName, String fileExt) { // Tiles.png
         if (!loadedTextures.containsKey(imageName+fileExt)) {
             try {
-                loadedTextures.put(imageName+fileExt, TextureLoader.getTexture(fileExt, ClassLoader.getSystemClassLoader().getResourceAsStream("com/challengercity/hedgehog/resources/"+imageName+(fileExt.toLowerCase()))));
+                loadedTextures.put(imageName+fileExt, TextureLoader.getTexture(fileExt, ClassLoader.getSystemClassLoader().getResourceAsStream("com/challengercity/tanks/resources/"+imageName+(fileExt.toLowerCase()))));
             } catch (Exception ex) {
                 TanksMain.log(ResourcePool.class, "Could not load texture - "+imageName+fileExt);
                 Display.destroy();
@@ -46,7 +46,7 @@ public class ResourcePool {
     public static void loadFrequentResources() {
         if (!loadedTextures.containsKey("gui_button.png")) {
             try {
-                loadedTextures.put("gui_button.png", TextureLoader.getTexture(".png", ClassLoader.getSystemClassLoader().getResourceAsStream("com/challengercity/hedgehog/resources/gui_button.png")));
+                loadedTextures.put("gui_button.png", TextureLoader.getTexture(".png", ClassLoader.getSystemClassLoader().getResourceAsStream("com/challengercity/tanks/resources/gui_button.png")));
             } catch (Exception ex) {
                 TanksMain.log(ResourcePool.class, "Could not load texture - gui_button.png");
             }

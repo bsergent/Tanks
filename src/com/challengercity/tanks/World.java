@@ -1,6 +1,7 @@
 
 package com.challengercity.tanks;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import org.lwjgl.input.Keyboard;
 
@@ -12,6 +13,7 @@ public class World {
 
     private UUID worldID;
     private TileEnum[][] worldTiles;
+    private ArrayList<Entity> entities = new ArrayList<>();
     public final static short tileSpace = 50;
     
     private final int viewSpeed = 2;

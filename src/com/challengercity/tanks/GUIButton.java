@@ -18,12 +18,22 @@ public class GUIButton extends GUI {
     private int fontSize = 16;
     private int hovered = 0;
     public int actionId;
+    public org.newdawn.slick.Color textColor;
     
     public GUIButton (int x, int y, int width, int height, int actionId, String text, int fontSize) {
         super(x, y, width, height, 1, 0, 128, 24);
         this.actionId = actionId;
         this.label = text;
         this.fontSize = fontSize;
+        this.textColor = new org.newdawn.slick.Color(0, 0, 0, 255);
+    }
+    
+    public GUIButton (int x, int y, int width, int height, int actionId, String text, int fontSize, org.newdawn.slick.Color color) {
+        super(x, y, width, height, 1, 0, 128, 24);
+        this.actionId = actionId;
+        this.label = text;
+        this.fontSize = fontSize;
+        this.textColor = color;
     }
 
     @Override
@@ -68,52 +78,52 @@ public class GUIButton extends GUI {
             
             /* Draw Left Section */
             glBegin(GL_QUADS);
-            glTexCoord2f(Renderer.getTextureFloat(picX, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Left
             glVertex2i(posX, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Right
             glVertex2i(posX+30, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Right
             glVertex2i(posX+30, posY+height);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Left
             glVertex2i(posX, posY+height);
             glEnd();
             
             /* Draw Middle Section */
             glBegin(GL_QUADS);
-            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Left
             glVertex2i(posX+30, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Right
             glVertex2i(posX+width-30, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Right
             glVertex2i(posX+width-30, posY+height);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX+30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Left
             glVertex2i(posX+30, posY+height);
             glEnd();
             
             /* Draw Right Section */
             glBegin(GL_QUADS);
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Left
             glVertex2i(posX+width-30, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()));  // Upper-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth, texture.getImageWidth()), Renderer.getTextureFloat(picY+(hovered*picHeight), texture.getImageHeight()+1));  // Upper-Right
             glVertex2i(posX+width, posY);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Right
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Right
             glVertex2i(posX+width, posY+height);
 
-            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()));  // Lower-Left
+            glTexCoord2f(Renderer.getTextureFloat(picX+picWidth-30, texture.getImageWidth()), Renderer.getTextureFloat(picY+picHeight+(hovered*picHeight), texture.getImageHeight()+1));  // Lower-Left
             glVertex2i(posX+width-30, posY+height);
             glEnd();
             
             int strPosX = posX+width/2-(font.getWidth(label)/2);
             int strPosY = posY+height/2-(font.getHeight(label)/2);
-            font.drawString(strPosX, strPosY, label);
+            font.drawString(strPosX, strPosY, label, textColor);
         }
     }
 

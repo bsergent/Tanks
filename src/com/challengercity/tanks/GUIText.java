@@ -27,7 +27,7 @@ public class GUIText extends GUI {
         this.label = text;
         this.centered = centered;
         this.fontSize = fontSize;
-        this.color = new org.newdawn.slick.Color(255, 255, 255, 255);
+        this.color = new org.newdawn.slick.Color(0, 0, 0, 255);
     }
     
     public GUIText (int x, int y, Screen screen, String text, int fontSize, boolean centered, org.newdawn.slick.Color color) {

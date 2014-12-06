@@ -2,7 +2,14 @@
 package com.challengercity.tanks;
 
 import java.util.ArrayList;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glVertex2i;
 
 /**
  *
@@ -22,6 +29,15 @@ public abstract class Screen {
     public abstract void actionPerformed(int actionId);
     
     public void render() {
+        glDisable(GL_TEXTURE_2D);
+        glColor4f(0.90f,0.83f,0.65f,1.0f);
+        glBegin(GL_QUADS);
+        glVertex2i(0, 0);
+        glVertex2i(TanksMain.screenWidth, 0);
+        glVertex2i(TanksMain.screenWidth, TanksMain.screenHeight);
+        glVertex2i(0, TanksMain.screenHeight);
+        glEnd();
+        glEnable(GL_TEXTURE_2D);
         for (int i = 0; i<renderGUIList.size(); i++) {
             glColor4f(1.0f,1.0f,1.0f,1.0f);
             renderGUIList.get(i).draw();

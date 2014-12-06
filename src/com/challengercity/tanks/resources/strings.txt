@@ -1,5 +1,5 @@
 // Begin Menus
-menu_main_multiplayer=Enter World
+menu_main_multiplayer=Multiplayer
 menu_main_exit=Quit
 menu_main_back=Back
 menu_main_cancel=Cancel

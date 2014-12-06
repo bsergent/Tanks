@@ -1,30 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package com.challengercity.tanks;
 
 import static org.lwjgl.opengl.GL11.*;
-import org.newdawn.slick.opengl.*;
+import org.newdawn.slick.opengl.Texture;
+
 /**
  *
  * @author Ben Sergent V/ha1fBit
  */
-public class GUIImage extends GUI {
+public class Bullet extends Entity {
+
+    private static int picX = 0;
+    private static int picY = 0;
+    private static int picWidth = 24;
+    private static int picHeight = 12;
+    private byte lastAni = 0;
     
-    public GUIImage (int x, int y, int width, int height, int picX, int picY, int picWidth, int picHeight, String texName) {
-        super(x, y, width, height, picX, picY, picWidth, picHeight);
-        this.texName=texName;
-    }
-    
-    public void delete() {
-        
-    }
-    
+    @Override
     public void draw() {
+        glRotatef(rotation, 0.0f, 0.0f, 1.0f);
         if (visible) {
-            Texture texture = ResourcePool.getTexture(texName, ".png");
+            Texture texture = ResourcePool.getTexture("bullets", ".png");
             texture.bind();
 
             glBegin(GL_QUADS);
@@ -42,8 +38,5 @@ public class GUIImage extends GUI {
             glEnd();
         }
     }
-    
-    public void checkMouse() {
-    }
-    
+
 }
