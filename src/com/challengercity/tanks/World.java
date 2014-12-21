@@ -2,6 +2,7 @@
 package com.challengercity.tanks;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 import org.lwjgl.input.Keyboard;
 
@@ -32,17 +33,31 @@ public class World {
         });
     }
 
-    void tick() {
-        // TODO Implement world tick
+    public void tick(long delta) {
+        Entity ent;
+        for(Iterator iterator = entities.iterator(); iterator.hasNext();) {
+            ent = (Entity) iterator.next();
+            ent.tick(delta);
+        }
+    }
+    
+    public void addEntity(Entity e) {
+        entities.add(e);
     }
 
-    void draw() {
-        for (int x = 0; x < worldTiles.length; x++) {
-            for (int y = 0; y < worldTiles[x].length; y++) {
-                if (worldTiles[x][y] != null) {
-                    //worldTiles[x][y].draw((x*Tile.tileSize)+(x*tileSpace),(y*Tile.tileSize)+(y*tileSpace));
-                }
-            }
+    public void draw() {
+//        for (int x = 0; x < worldTiles.length; x++) {
+//            for (int y = 0; y < worldTiles[x].length; y++) {
+//                if (worldTiles[x][y] != null) {
+//                    //worldTiles[x][y].draw((x*Tile.tileSize)+(x*tileSpace),(y*Tile.tileSize)+(y*tileSpace));
+//                }
+//            }
+//        }
+        
+        Entity ent;
+        for(Iterator iterator = entities.iterator(); iterator.hasNext();) {
+            ent = (Entity) iterator.next();
+            ent.draw();
         }
     }
 

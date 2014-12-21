@@ -101,6 +101,10 @@ public class Controller {
         }
     }
     
+    public static int[] getMousePosition() {
+        return new int[] {Mouse.getX(), TanksMain.screenHeight-Mouse.getY()};
+    }
+    
     public static void addListenerKeyboard(ListenerKeyboard lst) {
         keyListeners.add(lst);
     }

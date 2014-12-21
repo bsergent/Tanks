@@ -19,7 +19,7 @@ public class TanksMain {
     private Renderer renderer;
     private static Controller control;
     private static final String gameName = "Tanks";
-    private static final String version = "0.0.1 Alpha";
+    private static final String version = "0.0.2 Alpha";
     private static String build;
     final static ResourceBundle rb = ResourceBundle.getBundle("version"); 
     private static String username = "";

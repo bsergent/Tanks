@@ -15,10 +15,17 @@ public class Bullet extends Entity {
     private static int picWidth = 24;
     private static int picHeight = 12;
     private byte lastAni = 0;
+
+    public Bullet() {
+    }
+
+    public Bullet(int posX, int posY) {
+        super(posX, posY, 24, 12);
+    }
     
     @Override
     public void draw() {
-        glRotatef(rotation, 0.0f, 0.0f, 1.0f);
+        glRotatef(getRotation(), 0.0f, 0.0f, 1.0f);
         if (visible) {
             Texture texture = ResourcePool.getTexture("bullets", ".png");
             texture.bind();
