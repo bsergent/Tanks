@@ -12,17 +12,26 @@ public abstract class Entity extends RenderableObject {
     private float rotationSpeed = 0f;
     private float maxRotationSpeed = 1.5f;
     private float velocity = 0f;
-    private float maxVelocity = 7f;
+    private float targetVelocity = 0f;
+    private final float maxVelocity = 20f;
     private float acceleration = 0f;
+    private int lastPosX, lastPosY;
+    private float lastRotation = 0f;
 
     public Entity() {
     }
 
     public Entity(int posX, int posY, int width, int height) {
         super(posX, posY, width, height);
+        this.lastPosX = posX;
+        this.lastPosY = posY;
     }
     
     public void tick(long delta) {
+        lastPosX = posX;
+        lastPosY = posY;
+        lastRotation = rotation;
+        
         // Rotation
         if (rotation != targetRotation) {
             rotationSpeed = maxRotationSpeed;
@@ -49,8 +58,8 @@ public abstract class Entity extends RenderableObject {
         } else if (Math.abs(targetRotation-rotation) >= 90) {
             setVelocity(velocity-acceleration);
         }
-        if (maxVelocity-velocity < acceleration) {
-            setVelocity(maxVelocity);
+        if (targetVelocity-velocity < acceleration) {
+            setVelocity(targetVelocity);
         }
 //        if (velocity == 0 && acceleration < 0) {
 //            acceleration = 0;
@@ -112,6 +121,14 @@ public abstract class Entity extends RenderableObject {
         this.velocity = velocity;
     }
 
+    public float getTargetVelocity() {
+        return targetVelocity;
+    }
+
+    public void setTargetVelocity(float targetVelocity) {
+        this.targetVelocity = targetVelocity>maxVelocity?maxVelocity:targetVelocity;
+    }
+
     public float getAcceleration() {
         return acceleration;
     }
@@ -120,9 +137,15 @@ public abstract class Entity extends RenderableObject {
         this.acceleration = acceleration;
     }
     
+    public void revertMovement() {
+        posX = lastPosX;
+        posY = lastPosY;
+        rotation = lastRotation;
+    }
+    
     @Override
     public void delete() {
-        // Do  nothing
+        TanksMain.getCurrentWorld().removeEntity(this);
     }
     
 }

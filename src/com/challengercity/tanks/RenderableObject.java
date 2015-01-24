@@ -35,17 +35,17 @@ public abstract class RenderableObject {
         return hitbox;
     }
     
-    public boolean intersects(RenderableObject ro) {
-	return getHitbox().intersects(new Rectangle(ro.getHitbox()));
-    }
-    
-    public boolean intersectsField(int x, int y, int width, int height) {
-	return getHitbox().intersects(new Rectangle(x, y, width, height));
-    }
-    
-    public boolean intersectsOffset(RenderableObject ro, int offsetX, int offsetY) {
-        Rectangle offsetHitbox = new Rectangle(getHitbox().x+offsetX, getHitbox().y+offsetY, getHitbox().width, getHitbox().height);
-	return offsetHitbox.intersects(new Rectangle(ro.getHitbox()));
-    }
+//    public boolean intersects(RenderableObject ro) {
+//	return getHitbox().intersects(new Rectangle(ro.getHitbox()));
+//    }
+//    
+//    public boolean intersectsField(int x, int y, int width, int height) {
+//	return getHitbox().intersects(new Rectangle(x, y, width, height));
+//    }
+//    
+//    public boolean intersectsOffset(RenderableObject ro, int offsetX, int offsetY) {
+//        Rectangle offsetHitbox = new Rectangle(getHitbox().x+offsetX, getHitbox().y+offsetY, getHitbox().width, getHitbox().height);
+//	return offsetHitbox.intersects(new Rectangle(ro.getHitbox()));
+//    }
     
 }

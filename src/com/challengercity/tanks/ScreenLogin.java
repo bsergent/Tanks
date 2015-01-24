@@ -1,6 +1,7 @@
 
 package com.challengercity.tanks;
 
+import com.challengercity.tanks.events.KeyDownEvent;
 import java.awt.Desktop;
 import java.net.URL;
 import org.apache.http.client.fluent.Form;
@@ -50,24 +51,26 @@ public class ScreenLogin extends Screen {
             userBox.hovered = 0;
         }
         
-        Controller.addListenerKeyboard(new ListenerKeyboard(false) {
+        TanksMain.registerNewListener(new com.challengercity.tanks.events.Listener() {
 
             @Override
-            public void keyDown(int key) {
-                if (key == Keyboard.KEY_TAB) {
-                    if ((Controller.isKeyDown(Keyboard.KEY_LSHIFT) || Controller.isKeyDown(Keyboard.KEY_RSHIFT)) && passBox.hovered == 1) {
-                        userBox.hovered = 1;
-                        passBox.hovered = 0;
-                    } else if (!(Controller.isKeyDown(Keyboard.KEY_LSHIFT) || Controller.isKeyDown(Keyboard.KEY_RSHIFT)) && userBox.hovered == 1) {
-                        userBox.hovered = 0;
-                        passBox.hovered = 1;
-                    }
-                } else if (key == Keyboard.KEY_RETURN) {
-                    if (userBox.hovered == 1) {
-                        userBox.hovered = 0;
-                        passBox.hovered = 1;
-                    } else if (passBox.hovered == 1) {
-                        actionPerformed(0);
+            public void onKeyDown(KeyDownEvent e) {
+                if (!e.repeated) {
+                    if (e.key == Keyboard.KEY_TAB) {
+                        if ((Controller.isKeyDown(Keyboard.KEY_LSHIFT) || Controller.isKeyDown(Keyboard.KEY_RSHIFT)) && passBox.hovered == 1) {
+                            userBox.hovered = 1;
+                            passBox.hovered = 0;
+                        } else if (!(Controller.isKeyDown(Keyboard.KEY_LSHIFT) || Controller.isKeyDown(Keyboard.KEY_RSHIFT)) && userBox.hovered == 1) {
+                            userBox.hovered = 0;
+                            passBox.hovered = 1;
+                        }
+                    } else if (e.key == Keyboard.KEY_RETURN) {
+                        if (userBox.hovered == 1) {
+                            userBox.hovered = 0;
+                            passBox.hovered = 1;
+                        } else if (passBox.hovered == 1) {
+                            actionPerformed(0);
+                        }
                     }
                 }
             }

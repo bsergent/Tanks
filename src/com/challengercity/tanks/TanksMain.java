@@ -1,6 +1,9 @@
 
 package com.challengercity.tanks;
 
+import com.challengercity.tanks.events.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -35,6 +38,9 @@ public class TanksMain {
     public static int currentFPS;
     public static long lastDelta;
     public static int guiCooldown = 0;
+    public static int score = 0;
+    private static ArrayList<com.challengercity.tanks.events.Listener> listeners = new ArrayList<>();
+    private static ArrayList<com.challengercity.tanks.events.Event> eventQueue = new ArrayList<>();
     private static TanksMain ug;
     public static final boolean DEBUG = true;
     
@@ -80,6 +86,13 @@ public class TanksMain {
         TanksMain.sessionId = sessionId;
     }
     
+    public static World getCurrentWorld() {
+        if (currentScreen instanceof ScreenGame) {
+            return ((ScreenGame) currentScreen).getCurrentWorld();
+        }
+        return null;
+    }
+    
     public static void main(String[] args) {
         TanksMain.build = getRbTok("BUILD");
         ug = new TanksMain();
@@ -97,6 +110,39 @@ public class TanksMain {
     
     public static void log(Class cls, String str) {
         System.out.println("["+cls.getSimpleName()+"] "+str);
+    }
+    
+    public static void registerNewListener(com.challengercity.tanks.events.Listener list) {
+        listeners.add(list);
+    }
+    
+    public static void callEvent(com.challengercity.tanks.events.Event e) {
+        eventQueue.add(e);
+    }
+    
+    public static void processEvents() {
+        Iterator<com.challengercity.tanks.events.Event> eI = eventQueue.iterator();
+        while (eI.hasNext()) {
+            Event e = eI.next();
+            if (e != null) {
+                ArrayList<com.challengercity.tanks.events.Listener> list2 = (ArrayList<com.challengercity.tanks.events.Listener>) listeners.clone();
+                for (com.challengercity.tanks.events.Listener ls : list2) {
+                    if (e instanceof KeyUpEvent) {
+                        ls.onKeyUp((KeyUpEvent) e);
+                    } else if (e instanceof KeyDownEvent) {
+                        ls.onKeyDown((KeyDownEvent) e);
+                    } else if (e instanceof MouseButtonUpEvent) {
+                        ls.onMouseButtonUp((MouseButtonUpEvent) e);
+                    } else if (e instanceof MouseButtonDownEvent) {
+                        ls.onMouseButtonDown((MouseButtonDownEvent) e);
+                    } else if (e instanceof CollisionEvent) {
+                        ls.onCollision((CollisionEvent) e);
+                    }
+                }
+            }
+        }
+        
+        eventQueue.clear();
     }
     
     public static void setScreen(Screen scr) {
@@ -215,6 +261,8 @@ public class TanksMain {
             Controller.checkInput();
             currentScreen.tick(getDelta());
             currentScreen.mouseUpdate();
+            if (getCurrentWorld() != null) getCurrentWorld().checkCollisions();
+            processEvents();
             updateFPS();
             renderer.render();
             Display.sync(60);

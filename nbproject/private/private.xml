@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Games">
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/TanksMain.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/ScreenGame.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/World.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/Tank.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/TankPlayer.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/Bullet.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/CollisionHandler.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/Entity.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/Controller.java</file>
+            <file>file:/Users/Sgrt./NetBeansProjects/Tanks/src/com/challengercity/tanks/ListenerCollision.java</file>
+        </group>
+    </open-files>
+</project-private>

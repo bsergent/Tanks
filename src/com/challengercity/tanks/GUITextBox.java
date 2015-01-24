@@ -5,6 +5,7 @@
 
 package com.challengercity.tanks;
 
+import com.challengercity.tanks.events.KeyDownEvent;
 import java.awt.Font;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -36,12 +37,12 @@ public class GUITextBox extends GUI {
         this.actionId = actionId;
         this.text = defaultText;
         this.charLimit = charLimit;
-        Controller.addListenerKeyboard(new ListenerKeyboard(false) {
+        TanksMain.registerNewListener(new com.challengercity.tanks.events.Listener() {
 
             @Override
-            public void keyDown(int key) {
-                if (GUITextBox.this != null) {
-                    GUITextBox.this.keyDown(key);
+            public void onKeyDown(KeyDownEvent e) {
+                if (GUITextBox.this != null && !e.repeated) {
+                    GUITextBox.this.keyDown(e.key);
                 }
             }
             

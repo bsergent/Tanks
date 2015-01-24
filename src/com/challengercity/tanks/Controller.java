@@ -1,11 +1,11 @@
 
 package com.challengercity.tanks;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
+import com.challengercity.tanks.events.*;
 
 /**
  *
@@ -18,8 +18,6 @@ public class Controller {
     private static boolean[] mouseStates = new boolean[3];
     private static HashMap<String, Integer> controls = new HashMap();
     //private static boolean[] keySpecialStates = new boolean[246];
-    private static ArrayList<ListenerKeyboard> keyListeners = new ArrayList<>();
-    private static ArrayList<ListenerMouse> mouseListeners = new ArrayList<>();
     
     public Controller() {
         try {
@@ -35,30 +33,16 @@ public class Controller {
         for (int i = 0; i < keyStates.length; i++) { // TODO Allow backspace key to be held down
             if (Keyboard.isKeyDown(i)) { // If down now
                 if (!keyStates[i]) { // But was up
-                    for (ListenerKeyboard lk : keyListeners) {
-                        if (!lk.isContinuous()) {
-                            lk.keyDown(i);
-                        }
-                    }
+                    TanksMain.callEvent(new KeyDownEvent(i, false));
                 } else {
-                    for (ListenerKeyboard lk : keyListeners) {
-                        if (lk.isContinuous()) {
-                            lk.keyDown(i);
-                        }
-                    }
+                    TanksMain.callEvent(new KeyDownEvent(i, true));
                 }
                 keyStates[i] = true;
             } else { // If up now
                 if (keyStates[i]) { // But was down
-                    for (ListenerKeyboard lk : keyListeners) {
-                        lk.keyUp(i);
-                    }
+                    TanksMain.callEvent(new KeyUpEvent(i, false));
                 } else {
-                    for (ListenerKeyboard lk : keyListeners) {
-                        if (lk.isContinuous()) {
-                            lk.keyUp(i);
-                        }
-                    }
+                    TanksMain.callEvent(new KeyUpEvent(i, true));
                 }
                 keyStates[i] = false;
             }
@@ -66,16 +50,12 @@ public class Controller {
         for (int i = 0; i < mouseStates.length; i++) {
             if (Mouse.isButtonDown(i)) { // If down now
                 if (!mouseStates[i]) { // But was up
-                    for (ListenerMouse lm : mouseListeners) {
-                        lm.buttonDown(i, Mouse.getX(), Display.getHeight()-Mouse.getY());
-                    }
+                    TanksMain.callEvent(new MouseButtonDownEvent(i, Mouse.getX(), Display.getHeight()-Mouse.getY()));
                 }
                 mouseStates[i] = true;
             } else { // If up now
                 if (mouseStates[i]) { // But was down
-                    for (ListenerMouse lm : mouseListeners) {
-                        lm.buttonUp(i, Mouse.getX(), Display.getHeight()-Mouse.getY());
-                    }
+                    TanksMain.callEvent(new MouseButtonUpEvent(i, Mouse.getX(), Display.getHeight()-Mouse.getY()));
                 }
                 mouseStates[i] = false;
             }
@@ -103,14 +83,6 @@ public class Controller {
     
     public static int[] getMousePosition() {
         return new int[] {Mouse.getX(), TanksMain.screenHeight-Mouse.getY()};
-    }
-    
-    public static void addListenerKeyboard(ListenerKeyboard lst) {
-        keyListeners.add(lst);
-    }
-    
-    public static void addListenerMouse(ListenerMouse lst) {
-        mouseListeners.add(lst);
     }
     
 }

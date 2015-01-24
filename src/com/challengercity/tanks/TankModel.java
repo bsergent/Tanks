@@ -9,4 +9,7 @@ public enum TankModel {
 
     BASIC;
     
+    public final int width = 64;
+    public final int height = 64;
+    
 }
